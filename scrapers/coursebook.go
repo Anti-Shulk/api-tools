@@ -20,7 +20,7 @@ import (
 func ScrapeCoursebook(term string, startPrefix string, outDir string) {
 
 	// Load env vars
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load(".env.template"); err != nil {
 		log.Panic("Error loading .env file")
 	}
 

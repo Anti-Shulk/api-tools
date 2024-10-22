@@ -15,20 +15,20 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"strconv"
+
 	"strings"
 
-	"github.com/chromedp/cdproto/network"
 	"github.com/chromedp/cdproto/cdp"
+	"github.com/chromedp/cdproto/network"
 	"github.com/chromedp/chromedp"
 )
+
+var Headless = true
 
 // Initializes Chrome DevTools Protocol
 func InitChromeDp() (chromedpCtx context.Context, cancelFnc context.CancelFunc) {
 	log.Printf("Initializing chromedp...")
-	headlessEnv, present := os.LookupEnv("HEADLESS_MODE")
-	doHeadless, _ := strconv.ParseBool(headlessEnv)
-	if present && doHeadless {
+	if Headless {
 		chromedpCtx, cancelFnc = chromedp.NewContext(context.Background())
 		log.Printf("Initialized chromedp!")
 	} else {

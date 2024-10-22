@@ -51,6 +51,9 @@ func main() {
 	// Flags for logging
 	verbose := flag.Bool("verbose", false, "Enables verbose logging, good for debugging purposes.")
 
+	// Flag for headless mode
+	headless := flag.Bool("headless", true, "Enables headless mode for chromedp. Defaults to true.")
+
 	// Parse flags
 	flag.Parse()
 
@@ -80,6 +83,7 @@ func main() {
 	}
 
 	// Perform actions based on flags
+	utils.Headless = *headless
 	switch {
 	case *scrape:
 		switch {
